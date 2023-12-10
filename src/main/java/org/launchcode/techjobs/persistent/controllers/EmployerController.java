@@ -26,17 +26,16 @@ public class EmployerController {
         return "employers/add";
     }
     @Autowired
-    private Field employerRepository() {}
+    private EmployerRepository employerRepository;
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            model.addAttribute("title", "Create Event");
+            model.addAttribute("New Employer", "newEmployer");
             return "employers/add";
         }
-
         employerRepository.save(newEmployer);
         return "redirect:";
     }
