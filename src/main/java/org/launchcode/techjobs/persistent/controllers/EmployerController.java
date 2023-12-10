@@ -2,7 +2,6 @@ package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
 import org.launchcode.techjobs.persistent.models.Employer;
-import org.launchcode.techjobs.persistent.models.Job;
 import org.launchcode.techjobs.persistent.models.data.EmployerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +17,14 @@ import java.util.Optional;
 @RequestMapping("employers")
 public class EmployerController {
 
+    @Autowired
+    private EmployerRepository employerRepository;
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
         return "employers/add";
     }
-    @Autowired
-    private EmployerRepository employerRepository;
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
@@ -52,16 +52,9 @@ public class EmployerController {
 
     }
 
-
     @PostMapping ("/employers")
     public String index(Model model) {
-
-        List<Job> employer;
-        model.addAttribute("employerId", employer.id);
-        model.addAttribute("employerName", employer.name);
-
+        model.addAttribute("employers", employerRepository.findAll());
         return "index";
     }
-
-
 }

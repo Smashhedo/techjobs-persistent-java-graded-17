@@ -1,30 +1,29 @@
 package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
-import org.launchcode.techjobs.persistent.models.Job;
 import org.launchcode.techjobs.persistent.models.Skill;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("skills")
 public class SkillController {
+
+    @Autowired
+    private SkillRepository skillRepository;
+
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill());
         return "skills/add";
     }
-    @Autowired
-    private SkillRepository skillRepository;
 
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
@@ -55,10 +54,7 @@ public class SkillController {
 
     @PostMapping ("/skills")
     public String index(Model model) {
-
-        List<Job> skill;
-        model.addAttribute("skillId", skill.id);
-        model.addAttribute("skillName", skill.name);
+        model.addAttribute("skills", skillRepository.findAll());
         return "index";
     }
 
