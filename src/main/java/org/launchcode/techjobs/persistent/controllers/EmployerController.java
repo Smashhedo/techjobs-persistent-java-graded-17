@@ -10,7 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,24 +20,25 @@ public class EmployerController {
 
     @Autowired
     private EmployerRepository employerRepository;
+    private static List<String> employers = new ArrayList<>();
 
-    @PostMapping("/employers")
+    @GetMapping ("/")
     public String index(Model model) {
         model.addAttribute("employers", employerRepository.findAll());
         return "index";
     }
+
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
-        model.addAttribute(new Employer());
+        model.addAttribute("title", "Add Employers");
+        model.addAttribute("employers", employerRepository.findAll());
         return "employers/add";
     }
 
     @PostMapping("add")
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
-
         if (errors.hasErrors()) {
-            model.addAttribute("New Employer", "newEmployer");
             return "employers/add";
         }
         employerRepository.save(newEmployer);

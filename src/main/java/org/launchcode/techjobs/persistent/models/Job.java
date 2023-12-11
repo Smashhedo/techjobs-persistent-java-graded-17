@@ -11,9 +11,9 @@ import java.util.List;
 @Entity
 public class Job extends AbstractEntity{
 
-    @Id
-    @GeneratedValue
-    @ManyToOne
+//    @Id
+//    @GeneratedValue
+//    @ManyToOne
     private String Employer;
     private String skills;
 
