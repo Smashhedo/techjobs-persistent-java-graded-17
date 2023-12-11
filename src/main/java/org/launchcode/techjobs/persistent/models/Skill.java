@@ -18,7 +18,7 @@ public class Skill extends AbstractEntity {
     //model.addAttribute(new Skill());
 
     @ManyToMany(mappedBy = "skills")
-    private List<Job> jobs = new ArrayList<>();
+    private final List<Job> jobs = new ArrayList<>();
 
     @NotBlank(message = "Description is required")
     @Size(max = 500, message = "Description too long!")
@@ -36,7 +36,4 @@ public class Skill extends AbstractEntity {
         return jobs;
     }
 
-    public void setJobs(List jobs) {
-        this.jobs = jobs;
-    }
 }
