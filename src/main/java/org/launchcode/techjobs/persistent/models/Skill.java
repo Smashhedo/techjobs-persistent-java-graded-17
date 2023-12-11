@@ -9,6 +9,10 @@ public class Skill extends AbstractEntity {
 
     //No-arg constructor
     public Skill() {}
+
+    //Empty event object
+    //model.addAttribute(new Skill());
+
     @NotBlank(message = "Description is required")
     @Size(max = 500, message = "Description too long!")
     public String description;

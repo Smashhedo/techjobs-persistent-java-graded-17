@@ -19,6 +19,12 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
+    @PostMapping ("/skills")
+    public String index(Model model) {
+        model.addAttribute("skills", skillRepository.findAll());
+        return "index";
+    }
+
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
         model.addAttribute(new Skill());
@@ -50,12 +56,4 @@ public class SkillController {
         }
 
     }
-
-
-    @PostMapping ("/skills")
-    public String index(Model model) {
-        model.addAttribute("skills", skillRepository.findAll());
-        return "index";
-    }
-
 }

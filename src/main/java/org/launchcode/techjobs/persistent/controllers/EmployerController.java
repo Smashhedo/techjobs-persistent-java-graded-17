@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,11 @@ public class EmployerController {
     @Autowired
     private EmployerRepository employerRepository;
 
+    @PostMapping("/employers")
+    public String index(Model model) {
+        model.addAttribute("employers", employerRepository.findAll());
+        return "index";
+    }
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
         model.addAttribute(new Employer());
@@ -50,11 +56,5 @@ public class EmployerController {
             return "redirect:../";
         }
 
-    }
-
-    @PostMapping ("/employers")
-    public String index(Model model) {
-        model.addAttribute("employers", employerRepository.findAll());
-        return "index";
     }
 }
