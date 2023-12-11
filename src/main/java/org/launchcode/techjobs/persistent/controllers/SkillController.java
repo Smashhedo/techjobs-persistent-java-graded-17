@@ -1,6 +1,7 @@
 package org.launchcode.techjobs.persistent.controllers;
 
 import jakarta.validation.Valid;
+import org.launchcode.techjobs.persistent.models.Employer;
 import org.launchcode.techjobs.persistent.models.Skill;
 import org.launchcode.techjobs.persistent.models.data.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class SkillController {
 
     @GetMapping("add")
     public String displayAddSkillForm(Model model) {
-        model.addAttribute("title", "All Skills");
+        model.addAttribute(new Skill());
         model.addAttribute("skills", skillRepository.findAll());
         return "skills/add";
     }
@@ -35,9 +36,8 @@ public class SkillController {
     @PostMapping("add")
     public String processAddSkillForm(@ModelAttribute @Valid Skill newSkill,
                                          Errors errors, Model model) {
-
         if (errors.hasErrors()) {
-            model.addAttribute("New Skill", "newSkill");
+            model.addAttribute("title", "Add Skills");
             return "skill/add";
         }
         skillRepository.save(newSkill);

@@ -30,7 +30,7 @@ public class EmployerController {
 
     @GetMapping("add")
     public String displayAddEmployerForm(Model model) {
-        model.addAttribute("title", "Add Employers");
+        model.addAttribute(new Employer());
         model.addAttribute("employers", employerRepository.findAll());
         return "employers/add";
     }
@@ -39,6 +39,7 @@ public class EmployerController {
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
         if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Employers");
             return "employers/add";
         }
         employerRepository.save(newEmployer);
