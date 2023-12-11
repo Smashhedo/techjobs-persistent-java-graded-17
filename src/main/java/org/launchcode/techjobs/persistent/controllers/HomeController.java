@@ -23,6 +23,7 @@ public class HomeController {
 
     @Autowired
     private EmployerRepository employerRepository;
+    @Autowired
     private SkillRepository skillRepository;
 
     @RequestMapping("/")
@@ -41,7 +42,7 @@ public class HomeController {
 
     @PostMapping("add")
     public String processAddJobForm(@ModelAttribute @Valid Job newJob,
-                                       Errors errors, Model model, @RequestParam int employerId) {
+                                       Errors errors, Model model, @RequestParam int employerId, @RequestParam List<Integer> skills) {
 
         if (errors.hasErrors()) {
 	    model.addAttribute("title", "Add Job");
@@ -49,6 +50,7 @@ public class HomeController {
         }
 //        employerRepository.save(newJob);
 //        employerRepository.save(employerId);
+        skillRepository.findAllById(skills);
         return "redirect:";
     }
 
