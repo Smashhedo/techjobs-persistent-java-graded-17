@@ -20,9 +20,8 @@ public class Employer extends AbstractEntity {
 //    Empty event object
 //    model.addAttribute(new Employer());
 
-    @OneToMany(mappedBy = "Job")
-    @JoinColumn (name = "employer_id")
-    private final List<Job> jobs = new ArrayList<>();
+    @JoinColumn
+    private List<Job> jobs = new ArrayList<>();
 
     @NotBlank(message = "Location is required")
     @Size(min = 1, max = 100, message = "Location must be between 1 and 100 characters")

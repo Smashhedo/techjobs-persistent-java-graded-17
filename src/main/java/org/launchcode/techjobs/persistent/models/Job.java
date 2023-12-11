@@ -2,6 +2,7 @@ package org.launchcode.techjobs.persistent.models;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 import java.util.ArrayList;
@@ -9,7 +10,6 @@ import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity{
-    private static List<Job> jobs = new ArrayList<>();
 
     @ManyToOne
     private Employer employer;

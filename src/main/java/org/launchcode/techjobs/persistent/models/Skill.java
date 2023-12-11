@@ -5,6 +5,9 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Skill extends AbstractEntity {
 
@@ -15,7 +18,7 @@ public class Skill extends AbstractEntity {
     //model.addAttribute(new Skill());
 
     @ManyToMany(mappedBy = "skills")
-    private String jobs;
+    private List<Job> jobs = new ArrayList<>();
 
     @NotBlank(message = "Description is required")
     @Size(max = 500, message = "Description too long!")
@@ -29,11 +32,11 @@ public class Skill extends AbstractEntity {
         this.description = description;
     }
 
-    public String getJobs() {
+    public List<Job> getJobs() {
         return jobs;
     }
 
-    public void setJobs(String jobs) {
+    public void setJobs(List jobs) {
         this.jobs = jobs;
     }
 }
