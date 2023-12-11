@@ -20,7 +20,8 @@ public class Employer extends AbstractEntity {
 //    Empty event object
 //    model.addAttribute(new Employer());
 
-    @JoinColumn
+    @OneToMany
+    @JoinColumn(name = "employerId")
     private List<Job> jobs = new ArrayList<>();
 
     @NotBlank(message = "Location is required")
