@@ -2,19 +2,17 @@ package org.launchcode.techjobs.persistent.models;
 
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity{
+    private static List<Job> jobs = new ArrayList<>();
 
-//    @Id
-//    @GeneratedValue
-//    @ManyToOne
-    private String Employer;
+    @ManyToOne
+    private Employer employer;
     private String skills;
 
 
@@ -22,20 +20,20 @@ public class Job extends AbstractEntity{
     }
 
     // Initialize the id and value fields.
-    public Job(String anEmployer, String someSkills) {
+    public Job(Employer anEmployer, String someSkills) {
         super();
-        this.Employer = anEmployer;
+        this.employer = anEmployer;
         this.skills = someSkills;
     }
 
     // Getters and setters.
 
-    public String getEmployer() {
-        return Employer;
+    public Employer getEmployer() {
+        return employer;
     }
 
-    public void setEmployer(String employer) {
-        this.Employer = employer;
+    public void setEmployer(Employer employer) {
+        this.employer = employer;
     }
 
     public String getSkills() {
