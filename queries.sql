@@ -7,6 +7,7 @@ CREATE TABLE job (
 );
 
 --Part 2
+
 INSERT INTO employer (id, name, location)
 VALUES (1, "Wells Fargo", "St. Louis City");
 
@@ -15,5 +16,7 @@ FROM employer
 WHERE (location = "St. Louis City");
 
 --Part 3
+
+
 
 --Part 4
