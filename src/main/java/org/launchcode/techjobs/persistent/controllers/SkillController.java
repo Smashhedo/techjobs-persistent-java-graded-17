@@ -19,7 +19,6 @@ public class SkillController {
 
     @Autowired
     private SkillRepository skillRepository;
-    private static List<String> skills = new ArrayList<>();
 
     @GetMapping("/")
     public String index(Model model) {
