@@ -13,11 +13,11 @@ WHERE location IN ('St. Louis City');
 
 --Part 3
 
-DELETE FROM job;
+DROP TABLE job;
 
 --Part 4
 
-SELECT COUNT (employerId), name
-FROM skills
-WHERE EXISTS skills
-ORDER BY VARCHAR name;
+SELECT FROM skill
+LEFT INNER JOIN job_skills ON (job_skills.skills_id = skill.id)
+WHERE job_skills.jobs_id IS NOT NULL?
+ORDER BY name ASC;
